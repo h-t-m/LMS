@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.h_t_m.LMS.dao.UserDao">
+    <select id="queryById" resultType="User" parameterType="int">
+        SELECT uid,name,sex,age,grade,banji,major,phone,password
+        FROM user
+        WHERE uid = #{uid}
+    </select>
+
+    <select id="queryAll" resultType="User">
+        SELECT uid,name,sex,age,grade,banji,major,phone,password
+        FROM user
+        ORDER BY uid
+    </select>
+
+    <select id="checkUP" resultType="User">
+        SELECT uid,name,sex,age,grade,banji,major,phone,password
+        FROM user
+        WHERE uid = #{uid} and password = #{passwd}
+    </select>
+    <select id="checkAdmin" resultType="String">
+        SELECT *
+        FROM admin
+        WHERE passwd = #{passwd}
+    </select>
+    
+    <update id="updateUser">
+        UPDATE user
+        SET name = #{name}, sex = #{sex}, age = #{age}, grade = #{grade}, banji = #{banji}, major = #{major}, phone = #{phone}, password = #{password}
+        WHERE uid = #{uid}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE
+        FROM user
+        WHERE uid = #{uid}
+    </delete>
+
+    <insert id="addUser">
+        INSERT
+        INTO `user` (`uid`, `name`, `sex`, `age`, `grade`, `banji`, `major`, `phone`, `password`)
+        VALUES (#{uid}, #{name}, #{sex}, #{age}, #{grade}, #{banji}, #{major}, #{phone}, #{password})
+    </insert>
+</mapper>

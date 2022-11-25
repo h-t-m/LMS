@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Nov 21 20:06:43 CST 2022
+@default-mirrorId-http\://repo1.maven.org/maven2/.lastUpdated=1669032322310
+http\://maven.aliyun.com/nexus/content/repositories/central/.lastUpdated=1669032403748
+http\://repo1.maven.org/maven2/.error=Could not transfer artifact org.apache.maven.plugins\:maven-resources-plugin\:pom\:2.6 from/to mirrorId (http\://repo1.maven.org/maven2/)\: transfer failed for http\://repo1.maven.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.pom, status\: 501 HTTPS Required

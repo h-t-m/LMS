@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.h_t_m.LMS.dao.AppointmentDao">
+    <insert id="insertAppointment">
+        <!-- ignore 主键冲突，报错 -->
+        INSERT ignore INTO appointment (book_id, uid) VALUES (#{bookId}, #{uid})
+    </insert>
+
+    <select id="queryByKeyWithBook" resultType="Appointment">
+        <!-- 告知MyBatis 把结果映射到 Appointment 的同时映射 Book 属性 -->
+        SELECT
+        appointment.book_id,
+        appointment.uid,
+        appointment.appoint_time,
+        book.book_id "book.book_id",
+        book.`name` "book.name",
+        book.number "book.number"
+        FROM
+        appointment
+        INNER JOIN book ON appointment.book_id = book.book_id
+        WHERE
+        appointment.book_id = #{bookId}
+        AND appointment.uid = #{uid}
+    </select>
+
+    <select id="queryByuid" resultType="Appointment">
+        SELECT
+            appointment.book_id,
+            appointment.uid,
+            appointment.appoint_time,
+            appointment.ret,
+            appointment.return_time,
+            book.book_id "book.book_id",
+            book.`name` "book.name",
+            book.number "book.number",
+            book.author "book.author",
+            book.publisher "book.publisher",
+            book.brTimes "book.brTimes",
+            book.buydate "book.buydate"
+        FROM
+            appointment
+                INNER JOIN book ON appointment.book_id = book.book_id
+        WHERE
+            appointment.uid = #{uid}
+    </select>
+
+    <select id="queryAll" resultType="Appointment">
+        SELECT
+            appointment.book_id,
+            appointment.uid,
+            appointment.appoint_time,
+            appointment.ret,
+            appointment.return_time,
+            book.book_id "book.book_id",
+            book.`name` "book.name",
+            book.number "book.number",
+            book.author "book.author",
+            book.publisher "book.publisher",
+            book.brTimes "book.brTimes",
+            book.buydate "book.buydate"
+        FROM
+            appointment
+                INNER JOIN book ON appointment.book_id = book.book_id
+    </select>
+</mapper>
